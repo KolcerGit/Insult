@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
     private val cardImages = arrayOf(R.drawable.image1, R.drawable.image2, R.drawable.image3)
     private var currentIndex = 0
 
+    private lateinit var currentCard: WordCard
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         val textView: TextView = findViewById(R.id.textView)
         val buttonPrev: Button = findViewById(R.id.buttonPrev)
         val buttonNext: Button = findViewById(R.id.buttonNext)
+
+        currentCard = WordCard(imageView, textView)
 
         updateCard()
 
@@ -39,11 +43,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateCard() {
-        val imageView: ImageView = findViewById(R.id.imageView)
-        val textView: TextView = findViewById(R.id.textView)
-
-        // Установка изображения и текста для текущей карточки
-        imageView.setImageResource(cardImages[currentIndex])
-        textView.text = "Карточка ${currentIndex + 1}"
+        currentCard.setImage(cardImages[currentIndex])
+        currentCard.setText("Карточка ${currentIndex + 1}")
     }
 }
